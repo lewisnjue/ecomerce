@@ -1,8 +1,12 @@
 from django.shortcuts import render
-
+from .models import Product
+from .forms import registeruser
+from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    products=Product.objects.all()
+    context = {'products':products}
+    return render(request,'home.html',context)
 
 
 def about(request):
@@ -15,5 +19,19 @@ def cart(request):
 def checkout(request):
     return render(request,'checkout.html')
 
-def single(request):
-    return render(request,'single-product.html')
+def single(request,id):
+    product = Product.objects.get(pk=id)
+
+    return render(request,'single-product.html',{
+        'product':product
+    })
+
+
+def Register(request):
+    return render(request,'register.html',{
+        'form':registeruser()
+    })
+
+def loginview(request):
+    return render(request,'login.html')
+
