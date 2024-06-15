@@ -47,6 +47,13 @@
 	<!-- header -->
 	<div class="top-header-area" id="sticker">
 		<div class="container">
+		    {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 text-center">
 					<div class="main-menu-wrap">
@@ -64,15 +71,19 @@
 								<li class="current-list-item"><a href="{% url 'home' %}">Home</a>
 								</li>
 								<li><a href="{% url 'about' %}">About</a></li>
+
 								
 								
-								
-								<li>
+							 <li>
+						
 									<div class="header-icons">
 										<a class="shopping-cart" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
 									
 									</div>
 								</li>
+								<li> <a href="{% url 'login' %}">login </li>
+								<li> <a href="{% url 'logout' %}">logout</li>
+								<li><a href="{% url 'register' %}">register</li>
 							</ul>
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
