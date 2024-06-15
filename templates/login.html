@@ -1,6 +1,5 @@
 {% load static %}
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,25 +10,25 @@
         <link rel="stylesheet" href="{% static 'login.css' %}">
     </head>
     <body>
-
-
-
-
 <div class="login-page">
   <div class="form">
-    <form class="register-form">
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
+ 
+      <form class="login-form" method="post" action="">
+      {% csrf_token %}
+          {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+      <input type="text" placeholder="name" name="username" />
+      <input type="password" placeholder="password" name="password" />
+ 
+      <button> login </button>
+      <p class="message">have account? <a href="{% url 'register' %}">register here</a></p>
     </form>
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
+ 
   </div>
 </div>
     </body>

@@ -10,6 +10,7 @@ urlpatterns = [
     path('checkout',views.checkout,name='checkout'),
     path('single/<int:id>',views.single,name='single'),
     path('register',views.Register,name='register'),
-    path('login',views.loginview,name='login')
+    path('login',views.loginview,name='login'),
+    path('logout',views.logoutview,name="logout")
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
