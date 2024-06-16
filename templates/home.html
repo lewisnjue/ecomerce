@@ -32,19 +32,22 @@
 	</div>
 	<!-- end breadcrumb section -->
 			<div class="row">
-          {% for product in products %}
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-						<a href="{% url 'single' product.id %}"><img src="{{ product.image.url }}" alt=""></a>
-
+				{% for product in products %}
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">
+								<a href="{% url 'single' product.id %}">
+									<img src="{{ product.image.url }}" alt="">
+								</a>
+							</div>
+							<h3>{{ product.name }}</h3>
+							<p class="product-price"><span>Per Kg</span> {{ product.price }}$</p>
+							<a href="{% url 'addtocart' product.id 1 %}" class="cart-btn">
+								<i class="fas fa-shopping-cart"></i> Add to Cart
+							</a>
 						</div>
-						<h3>{{ prodct.name }}</h3>
-						<p class="product-price"><span>Per Kg</span> {{ product.price }}$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
-                {% endfor %} 
+				{% endfor %}
 				</div>
 			</div>
             </div>
