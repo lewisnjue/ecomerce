@@ -42,9 +42,13 @@
 							</div>
 							<h3>{{ product.name }}</h3>
 							<p class="product-price"><span>Per Kg</span> {{ product.price }}$</p>
-							<a href="{% url 'addtocart' product.id 1 %}" class="cart-btn">
-								<i class="fas fa-shopping-cart"></i> Add to Cart
-							</a>
+							<!--make this a form please-->
+							<form method="post" action="{% url 'addtocart' %}">
+								{% csrf_token %}
+								<input type="hidden" name="number" value="1">
+								<input type="hidden" name="id" value="{{product.id}}">
+								<button type="submit">add to cart</button>
+							</form>
 						</div>
 					</div>
 				{% endfor %}

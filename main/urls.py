@@ -13,13 +13,14 @@ urlpatterns = [
     path('register',views.Register,name='register'),
     path('login',views.loginview,name='login'),
     path('logout',views.logoutview,name="logout"),
-    path('addtocart/<int:id>/<int:quantity>/',views.addtocart, name='addtocart'),
+    path('addtocart',views.addtocart, name='addtocart'),
     #password reseting 
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('addtocart2',views.addtocart2,name='addtocart2')
+    path('remove/<int:id>',views.remove,name='remove')
+    
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

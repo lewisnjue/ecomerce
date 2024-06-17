@@ -13,3 +13,12 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE,related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)  # Ensures positive quantity
+
+    # Calculate the total price for each CartItem instance
+    @property
+    def total(self):
+        return self.quantity * self.product.price
+
+    # Consider adding a method to save the total for efficiency (optional)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Call the parent's save method
