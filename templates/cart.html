@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
+					
 						<h1>Cart</h1>
 					</div>
 				</div>
@@ -34,30 +34,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="{% static 'assets/img/products/product-img-1.jpg' %}" alt="Strawberry"></td>
-									<td class="product-name">Strawberry</td>
-									<td class="product-price">$85</td>
-									<td class="product-quantity"><input type="number" value="1" min="1"></td>
-									<td class="product-total">$85</td>
+							{% for item in items %}
+							<tr class="table-body-row">
+									<td class="product-remove"><a href="{% url 'remove' item.id %}"><i class="far fa-window-close"></i></a></td>
+									<td class="product-image"><img src="{{item.product.image.url }}" alt="Strawberry"></td>
+									<td class="product-name">{{ item.product.name}}</td>
+									<td class="product-price">${{item.product.price}}</td>
+									<td class="product-quantity">{{item.quantity}}</td>
+									<td class="product-total">${{item.total}}</td>
 								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="{% static 'assets/img/products/product-img-2.jpg' %}" alt="Berry"></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" value="1" min="1"></td>
-									<td class="product-total">$70</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="{% static 'assets/img/products/product-img-3.jpg' %}" alt="Lemon"></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" value="1" min="1"></td>
-									<td class="product-total">$35</td>
-								</tr>
+							{% endfor %}
 							</tbody>
 						</table>
 					</div>
@@ -74,32 +60,13 @@
 							</thead>
 							<tbody>
 								<tr class="total-data">
-									<td><strong>Subtotal: </strong></td>
-									<td>$190</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>Shipping: </strong></td>
-									<td>$45</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>Total: </strong></td>
-									<td>$235</td>
+									<td><strong>total: </strong></td>
+									<td>{{subtotal}}</td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="cart.html" class="boxed-btn">Update Cart</a>
-							<a href="checkout.html" class="boxed-btn black">Check Out</a>
-						</div>
-					</div>
-
-					<div class="coupon-section">
-						<h3>Apply Coupon</h3>
-						<div class="coupon-form-wrap">
-							<form action="index.html">
-								<p><input type="text" placeholder="Coupon"></p>
-								<p><input type="submit" value="Apply"></p>
-							</form>
+							<a href="#" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
 				</div>
