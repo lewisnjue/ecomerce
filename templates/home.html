@@ -37,7 +37,7 @@
 						<div class="single-product-item">
 							<div class="product-image">
 								<a href="{% url 'single' product.id %}">
-									<img src="{{ product.image.url }}" alt="">
+									<img  style="height: 270px; width: auto;" src="{{ product.image.url }}" alt="">
 								</a>
 							</div>
 							<h3>{{ product.name }}</h3>
@@ -47,7 +47,7 @@
 								{% csrf_token %}
 								<input type="hidden" name="number" value="1">
 								<input type="hidden" name="id" value="{{product.id}}">
-								<button type="submit">add to cart</button>
+								<button class="cart-btn btn-lg" type="submit">add to cart</button>
 							</form>
 						</div>
 					</div>
