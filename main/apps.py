@@ -4,5 +4,5 @@ class MainConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'main'
     def ready(sel):
-        from .signals import createcart
+        from .signals import createcart,notifyuser
         return super().ready()

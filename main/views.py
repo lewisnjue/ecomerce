@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Product,Cart,CartItem
+from .models import Product,Cart,CartItem,subscribedEmails
 from .forms import registeruser
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -7,16 +7,18 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+from django.views.decorators.http import require_GET,require_POST,require_safe
+
+@require_safe
 def home(request):
     products=Product.objects.all()
     context = {'products':products}
     return render(request,'home.html',context)
 
-
+@require_safe
 def about(request):
     return render(request,'about.html')
-
+@require_safe
 @login_required(login_url='login')
 def cart(request):
     user = request.user
@@ -34,13 +36,13 @@ def cart(request):
 def checkout(request):
     return render(request,'checkout.html')
 
+@require_safe
 def single(request,id):
     product = Product.objects.get(pk=id)
 
     return render(request,'single-product.html',{
         'product':product
     })
-
 
 def Register(request):
     if request.method == 'POST':
@@ -79,6 +81,8 @@ def logoutview(request):
     logout(request)
     return redirect('login')
 
+
+@require_POST
 @login_required(login_url='login')
 def addtocart(request):
     if request.method == 'POST':
@@ -102,9 +106,19 @@ def addtocart(request):
         previous_url = request.META.get('HTTP_REFERER', '/')
         return HttpResponseRedirect(previous_url)
     
-
+@require_GET
 def remove(request,id):
     item = CartItem.objects.get(id=id)
     item.delete()
     previous_url = request.META.get('HTTP_REFERER', '/')
     return HttpResponseRedirect(previous_url)
+
+
+@require_POST
+def subscribe(request):
+    if request.method =='POST':
+        subscribedEmails.objects.create(email=request.POST.get('email'))
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
+    
+

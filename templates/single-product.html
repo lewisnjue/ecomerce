@@ -37,7 +37,7 @@
 						<div class="single-product-form" style="width : 48%">
 							<form action="{% url 'addtocart' %}"  method="post">
 							  {% csrf_token %}
-								<input type="number" placeholder="1" name="number">
+								<input type="number" placeholder="1" name="number" value="1">
 								<input type="hidden" name="id" value="{{product.id}}">
 								<button type="submit"> Add to Cart</button>
 							</form>
@@ -51,32 +51,5 @@
 			</div>
 		</div>
 	</div>
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
-
+	
 {% endblock %}
