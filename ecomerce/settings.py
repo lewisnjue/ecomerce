@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecomerce_django',
+        'USER':'lewis',
+        'PASSWORD':'lewis254',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
 
