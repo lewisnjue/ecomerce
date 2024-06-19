@@ -24,3 +24,5 @@ def notifyuser(sender,instance,created,*args,**kwargs):
         ]
 
         send_mass_mail(messages, fail_silently=False)
+        # this method has more performarce for more messanges that send_mail class method 
+        

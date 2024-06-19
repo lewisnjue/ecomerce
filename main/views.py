@@ -125,3 +125,17 @@ def subscribe(request):
         return HttpResponseRedirect(previous_url)
     
 
+
+
+
+def product_search(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.search(query)
+    else:
+        products = Product.objects.all()  # Or any default queryset you prefer
+
+    context = {
+        'products': products,
+    }
+    return render(request, 'result.html', context)

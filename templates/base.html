@@ -82,10 +82,10 @@
 								</li>
 								{% if request.user.is_authenticated %}
 								
-								<li> <a href="{% url 'logout' %}">logout</li>
+								<li> <a href="{% url 'logout' %}">logout </a></li>
 									{% else %}
-									<li> <a href="{% url 'login' %}">login </li>
-								<li><a href="{% url 'register' %}">register</li>
+									<li> <a href="{% url 'login' %}">login </a> </li>
+								<li><a href="{% url 'register' %}">register </a></li>
 									{% endif %}
 							</ul>
 						</nav>
@@ -98,8 +98,8 @@
 		</div>
 	</div>
 	<!-- end header -->
-
-	<!-- search area -->
+	 	<!-- search area -->
+		 	<!-- search area -->
 	<div class="search-area">
 		<div class="container">
 			<div class="row">
@@ -108,16 +108,20 @@
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<form action="{% url 'search' %}" method="get">
+								<input type="text" placeholder="Keywords" name="q">
+								<button type="submit">Search <i class="fas fa-search"></i></button>
+
+							</form>
+							
+						
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end search arewa -->
-	
+	<!-- end search area -->
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -130,10 +134,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 	<!-- end breadcrumb section -->
 
-<!--end-->
+
 <div>
 
     {% block body %}
@@ -141,7 +145,33 @@
     {% endblock %}
     </div>
 <!--down-->
-
+	<!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/1.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/2.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/3.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/4.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/5.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->
 
 
 <!-- footer -->
