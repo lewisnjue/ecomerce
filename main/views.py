@@ -8,11 +8,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET,require_POST,require_safe
-
+from django.core.paginator import Paginator
 @require_safe
 def home(request):
     products=Product.objects.all()
-    context = {'products':products}
+    paginaator=Paginator(products,15) # show 2 products per page 
+    page_number=request.GET.get('page')
+    page_obj=paginaator.get_page(page_number)
+    context = {'products':page_obj}
     return render(request,'home.html',context)
 
 @require_safe
