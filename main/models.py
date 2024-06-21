@@ -13,9 +13,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product_images', blank=False, null=False)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=100, decimal_places=2)
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
-    
+        
     objects = ProductManager()
 
 class Cart(models.Model):
