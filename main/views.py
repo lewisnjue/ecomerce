@@ -12,6 +12,7 @@ from django.core.paginator import Paginator
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
+from django.http import JsonResponse
 @require_safe
 def home(request):
     products=Product.objects.all()
@@ -105,6 +106,7 @@ def logoutview(request):
     return redirect('login')
 
 
+# start of AJAX request
 @require_POST
 @login_required(login_url='login')
 def addtocart(request):
@@ -112,7 +114,6 @@ def addtocart(request):
         mycart = Cart.objects.get(user_id=request.user.id)
         myproduct = get_object_or_404(Product, id=request.POST.get('id'))
         quantity = int(request.POST.get('number'))
-        
         
         # Check if the product is already in the cart
         cart_item = CartItem.objects.filter(cart=mycart, product=myproduct).first()
@@ -125,10 +126,10 @@ def addtocart(request):
             # Create a new cart item
             CartItem.objects.create(cart=mycart, product=myproduct, quantity=quantity)
         
-        # Redirect to the previous page
-        previous_url = request.META.get('HTTP_REFERER', '/')
-        return HttpResponseRedirect(previous_url)
+        #request.headers.get('x-requested-with') == 'XMLHttpRequest'
+        return JsonResponse({'message': 'Product added to cart successfully!'})
     
+# end of AJAX request
 @require_GET
 def remove(request,id):
     item = CartItem.objects.get(id=id)
