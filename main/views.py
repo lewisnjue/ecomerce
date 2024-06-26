@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET,require_POST,require_safe
 from django.core.paginator import Paginator
+from django.views.generic import TemplateView
+from django.utils.decorators import method_decorator
+from django.views.generic.detail import DetailView
+from django.http import JsonResponse
 @require_safe
 def home(request):
     products=Product.objects.all()
@@ -35,10 +39,25 @@ def cart(request):
         'subtotal':subtotal
     })
 
+
+@method_decorator(login_required(login_url='login'),name='dispatch')
+class checkout(TemplateView):
+    template_name = 'checkout.html'
+
+""" 
 @login_required(login_url='login')
 def checkout(request):
     return render(request,'checkout.html')
+ """
 
+
+@method_decorator(require_safe,name='dispatch')
+class single(DetailView):
+    model = Product
+    template_name='single-product.html'
+    context_object_name = 'product'
+
+""" 
 @require_safe
 def single(request,id):
     product = Product.objects.get(pk=id)
@@ -46,6 +65,8 @@ def single(request,id):
     return render(request,'single-product.html',{
         'product':product
     })
+ """
+
 
 def Register(request):
     if request.method == 'POST':
@@ -85,6 +106,7 @@ def logoutview(request):
     return redirect('login')
 
 
+# start of AJAX request
 @require_POST
 @login_required(login_url='login')
 def addtocart(request):
@@ -92,7 +114,6 @@ def addtocart(request):
         mycart = Cart.objects.get(user_id=request.user.id)
         myproduct = get_object_or_404(Product, id=request.POST.get('id'))
         quantity = int(request.POST.get('number'))
-        
         
         # Check if the product is already in the cart
         cart_item = CartItem.objects.filter(cart=mycart, product=myproduct).first()
@@ -105,33 +126,33 @@ def addtocart(request):
             # Create a new cart item
             CartItem.objects.create(cart=mycart, product=myproduct, quantity=quantity)
         
-        # Redirect to the previous page
-        previous_url = request.META.get('HTTP_REFERER', '/')
-        return HttpResponseRedirect(previous_url)
+        #request.headers.get('x-requested-with') == 'XMLHttpRequest'
+        return JsonResponse({'message': 'Product added to cart successfully!'})
     
+# end of AJAX request
 @require_GET
 def remove(request,id):
     item = CartItem.objects.get(id=id)
     item.delete()
     previous_url = request.META.get('HTTP_REFERER', '/')
     return HttpResponseRedirect(previous_url)
+    
 
 
 @require_POST
 def subscribe(request):
     if request.method =='POST':
         subscribedEmails.objects.create(email=request.POST.get('email'))
-        previous_url = request.META.get('HTTP_REFERER', '/')
-        return HttpResponseRedirect(previous_url)
+        return JsonResponse({'message': 'Subscribed successfully!'})
     
 
 
 
-
+@require_safe
 def product_search(request):
     query = request.GET.get('q')
     if query:
-        products = Product.objects.search(query)
+        products = Product.objects.search(query) # my custom search wich i have defined 
     else:
         products = Product.objects.all()  # Or any default queryset you prefer
 

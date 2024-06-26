@@ -35,7 +35,7 @@
 						<!--here bro -->
 						<!--/end here-->
 						<div class="single-product-form" style="width : 48%">
-							<form action="{% url 'addtocart' %}"  method="post">
+							<form action="{% url 'addtocart' %}"  method="post" class="add-to-cart-form">
 							  {% csrf_token %}
 								<input type="number" placeholder="1" name="number" value="1">
 								<input type="hidden" name="id" value="{{product.id}}">
