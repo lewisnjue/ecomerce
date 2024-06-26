@@ -136,14 +136,14 @@ def remove(request,id):
     item.delete()
     previous_url = request.META.get('HTTP_REFERER', '/')
     return HttpResponseRedirect(previous_url)
+    
 
 
 @require_POST
 def subscribe(request):
     if request.method =='POST':
         subscribedEmails.objects.create(email=request.POST.get('email'))
-        previous_url = request.META.get('HTTP_REFERER', '/')
-        return HttpResponseRedirect(previous_url)
+        return JsonResponse({'message': 'Subscribed successfully!'})
     
 
 
