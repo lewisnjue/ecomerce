@@ -13,7 +13,11 @@ from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.http import JsonResponse
+import stripe
+from django.http import JsonResponse
+stripe.api_key = 'sk_test_51PWBWMDyeSzoV8OmGDk3vsUir9KYOLMWi4aMQi9M5ycGSdAXr6V6ba14GiYUuNZLL8HFZWjSjzhbmVEw1aXJc5hc00LIQGyV8w'
 
+YOUR_DOMAIN = 'http://localhost:8000'
 @require_safe
 def home(request):
     products=Product.objects.all()
@@ -164,4 +168,44 @@ def product_search(request):
 
 
 
+@require_POST
+def create_checkout_session(request):
+        session = stripe.checkout.Session.create(
+            ui_mode = 'embedded',
+            line_items=[
+                {
+                     "price_data": {
+                        "currency": "usd",
+                        "product_data": {
+                            "name": "lewis",
+                        },
+                        "unit_amount": 1000,  # In cents (replace with your actual price)
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            return_url=YOUR_DOMAIN + '/return?session_id={CHECKOUT_SESSION_ID}',
+        )
+        return JsonResponse({
+            'clientSecret': session.client_secret,
+        })
 
+@require_GET
+def session_status(request):
+    session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
+
+    return JsonResponse({
+        'customer_email': session.customer_details.email,
+        'status': session.payment_status,
+    })
+
+
+
+class CheckoutView(TemplateView):
+    template_name = 'checkout.html'
+
+@require_GET
+def returnview(request):
+    return render(request,'return.html', {'session_id': request.GET.get('session_id')})
+    

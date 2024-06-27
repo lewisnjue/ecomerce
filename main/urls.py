@@ -22,6 +22,10 @@ urlpatterns = [
     path('remove/<int:id>',views.remove,name='remove'),
     path('subscribe',views.subscribe,name="subscribe"),
     path('search',views.product_search,name="search"),
+    path('create-checkout-session',views.create_checkout_session,name='create-checkout-session'),
+    path('session-status', views.session_status, name='session-status'),
+    path('checkout',views.CheckoutView.as_view(), name='checkout'), 
+    path('return', views.returnview, name='return-url'),
     
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

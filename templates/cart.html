@@ -21,7 +21,7 @@
 							<tbody>
 							{% for item in items %}
 							<tr class="table-body-row">
-									<td class="product-remove"><a href="{% url 'remove' item.id %}"><i class="far fa-window-close"></i></a></td>
+									<td class="product-remove"><a href="{% url 'remove' item.id %}" class="link-remove-product"><i class="far fa-window-close"></i></a></td>
 									<td class="product-image"><img src="{{item.product.image.url }}" alt="Strawberry"></td>
 									<td class="product-name">{{ item.product.name}}</td>
 									<td class="product-price">${{item.product.price}}</td>
@@ -51,7 +51,7 @@
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="#" class="boxed-btn black">Check Out</a>
+							<a href="{% url 'checkout' %}" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
 				</div>
