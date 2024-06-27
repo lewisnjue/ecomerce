@@ -13,6 +13,7 @@ from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.http import JsonResponse
+
 @require_safe
 def home(request):
     products=Product.objects.all()
@@ -160,3 +161,7 @@ def product_search(request):
         'products': products,
     }
     return render(request, 'result.html', context)
+
+
+
+
