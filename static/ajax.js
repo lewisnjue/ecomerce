@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', form.action, true);
+            var xhr = new XMLHttpRequest(); // creating new XMLHttpRequest object 
+            xhr.open('POST', form.action, true); // true here is optional
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
