@@ -13,6 +13,9 @@ from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.contrib import messages
+
 @require_safe
 def home(request):
     products=Product.objects.all()
@@ -22,9 +25,6 @@ def home(request):
     context = {'products':page_obj}
     return render(request,'home.html',context)
 
-@require_safe
-def about(request):
-    return render(request,'about.html')
 @require_safe
 @login_required(login_url='login')
 def cart(request):
@@ -40,15 +40,15 @@ def cart(request):
     })
 
 
-@method_decorator(login_required(login_url='login'),name='dispatch')
+""" @method_decorator(login_required(login_url='login'),name='dispatch')
 class checkout(TemplateView):
-    template_name = 'checkout.html'
+    template_name = 'checkout.html' """
 
-""" 
+
 @login_required(login_url='login')
 def checkout(request):
     return render(request,'checkout.html')
- """
+
 
 
 @method_decorator(require_safe,name='dispatch')
@@ -160,3 +160,25 @@ def product_search(request):
         'products': products,
     }
     return render(request, 'result.html', context)
+
+
+
+@require_POST
+@login_required(login_url='login')
+def sendadminmail(request):
+    email = request.POST.get('email')
+    phone1 = request.POST.get('phone')
+    phone2 = request.POST.get('phone2')
+    username = request.user.username
+
+    # Here you can add the logic to send an email
+    # For example:
+    send_mail(
+        'order',
+        f'user: {username}.\n Email: {email} \n Phone1: {phone1} \n Phone2: {phone2}',
+        f'{email}',
+        ['lewiskinyuanjue254.ke@gmail.com'],
+        fail_silently=False,
+    )
+    messages.success(request,'your order has been received you will be contracted within 24 hours')
+    return HttpResponseRedirect(reverse('home'))

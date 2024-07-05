@@ -1,125 +1,197 @@
-{% extends 'base.html' %}
-{% load static  %}
-{% block body %}
->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>checkout</title>
+</head>
+<style>
+	/* BTW alt-shift will pop a color picker 
+  example color: followed  by alt shift will pop it
+*/
+/*
+Hide the label if placeholder is supported
+*/
 
-	<!-- check out section -->
-	<div class="checkout-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="checkout-accordion-wrap">
-						<div class="accordion" id="accordionExample">
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingOne">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          Billing Address
-						        </button>
-						      </h5>
-						    </div>
+body{
+  background:#b4b4b4;
+}
 
-						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="billing-address-form">
-						        	<form action="index.html">
-						        		<p><input type="text" placeholder="Name"></p>
-						        		<p><input type="email" placeholder="Email"></p>
-						        		<p><input type="text" placeholder="Address"></p>
-						        		<p><input type="tel" placeholder="Phone"></p>
-						        		<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
-						        	</form>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingTwo">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Shipping Address
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="shipping-address-form">
-						        	<p>Your shipping address form is here.</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingThree">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          Card Details
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="card-details">
-						        	<p>Your card details goes here.</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						</div>
+#registration-form {
+  font-family:'Open Sans Condensed', sans-serif;
+	width: 400px;
+  min-width:250px;
+	margin: 20px auto;
+	position: relative;
+}
 
-					</div>
+#registration-form .fieldset {
+	background-color:#d5d5d5;
+
+	border-radius: 3px;
+  
+}
+
+ #registration-form legend {
+	text-align: center;
+	background: #364351;
+	width: 100%;
+	padding: 30px 0;
+	border-radius: 3px 3px 0 0;
+	color: white;
+font-size:2em;
+}
+
+.fieldset form{
+  border:1px solid #2f2f2f;
+  margin:0 auto;
+  display:block;
+  width:100%;
+  padding:30px 20px;
+  box-sizing:border-box;
+  border-radius:0 0 3px 3px;
+}
+.placeholder #registration-form label {
+	display: none;
+}
+ .no-placeholder #registration-form label{
+margin-left:5px;
+  position:relative;
+  display:block;
+  color:grey;
+  text-shadow:0 1px white;
+  font-weight:bold;
+}
+/* all */
+::-webkit-input-placeholder { text-shadow:1px 1px 1px white; font-weight:bold; }
+::-moz-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } /* firefox 19+ */
+:-ms-input-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } /* ie */
+#registration-form input[type=text] {
+	padding: 15px 20px;
+	border-radius: 1px;
+  margin:5px auto;
+  background-color:#f7f7f7;
+	border: 1px solid silver;
+
+	-webkit-box-shadow: inset 0 1px 5px rgba(0,0,0,0.2);
+	box-shadow: inset 0 1px 5px rgba(0,0,0,0.2), 0 1px rgba(255,255,255,.8);
+	width: 100%;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+  -webkit-transition:background-color .5s ease;
+-moz-transition:background-color .5s ease;
+-o-transition:background-color .5s ease;
+-ms-transition:background-color .5s ease;
+transition:background-color .5s ease;
+}
+.no-placeholder #registration-form input[type=text] {
+	padding: 10px 20px;
+}
+
+#registration-form input[type=text]:active, .placeholder #registration-form input[type=text]:focus {
+	outline: none;
+	border-color: silver;
+  background-color:white;
+}
+
+#registration-form input[type=submit] {
+  font-family:'Open Sans Condensed', sans-serif;
+  text-transform:uppercase;
+  outline:none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #5C8CA7;
+	padding: 10px;
+	color: white;
+	border: 1px solid #3498db;
+	border-radius: 3px;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-top: 5px;
+	cursor: pointer;
+  position:relative;
+  top:0;
+}
+
+#registration-form input[type=submit]:hover {
+	background-color: #2980b9;
+}
+
+#registration-form input[type=submit]:active {
+background:#5C8CA7;
+}
+
+
+.parsley-error-list{
+background-color:#C34343;
+padding: 5px 11px;
+margin: 0;
+list-style: none;
+border-radius: 0 0 3px 3px;
+margin-top:-5px;
+  margin-bottom:5px;
+  color:white;
+  border:1px solid #870d0d;
+  border-top:none;
+    -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position:relative;
+  top:-1px;
+  text-shadow:0px 1px 1px #460909;
+    font-weight:700;
+  font-size:12px;
+}
+.parsley-error{
+	border-color:#870d0d!important;
+  border-bottom:none;
+}
+#registration-form select{
+	width:100%;
+	padding:5px;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+
+</style>
+<body>
+	<div id="registration-form">
+		<div class='fieldset'>
+		<legend>PLACE YOUR ORDER</legend>
+			<form action="{% url 'sendadminmail' %}" method="post">
+				{% csrf_token %}
+				<div class='row'>
+					<label for='firstname'>email</label>
+					<input type="email" placeholder="email" name="email" id="email" data-required="true" data-error-message="your email is not valid">
+					<br>
+					<br>
 				</div>
-
-				<div class="col-lg-4">
-					<div class="order-details-wrap">
-						<table class="order-details">
-							<thead>
-								<tr>
-									<th>Your order Details</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody class="order-details-body">
-								<tr>
-									<td>Product</td>
-									<td>Total</td>
-								</tr>
-								<tr>
-									<td>Strawberry</td>
-									<td>$85.00</td>
-								</tr>
-								<tr>
-									<td>Berry</td>
-									<td>$70.00</td>
-								</tr>
-								<tr>
-									<td>Lemon</td>
-									<td>$35.00</td>
-								</tr>
-							</tbody>
-							<tbody class="checkout-details">
-								<tr>
-									<td>Subtotal</td>
-									<td>$190</td>
-								</tr>
-								<tr>
-									<td>Shipping</td>
-									<td>$50</td>
-								</tr>
-								<tr>
-									<td>Total</td>
-									<td>$240</td>
-								</tr>
-							</tbody>
-						</table>
-						<a href="#" class="boxed-btn">Place Order</a>
-					</div>
+				<div class='row'>
+					<label for="email">phone</label>
+					<input type="tel" name="phone" id="phone" data-required="true" data-error-message="your phone number is required">
+					<br>
+					<br>
+					
 				</div>
-			</div>
+				<div class='row'>
+					<label for="phone2">phone2</label>
+					<input type="tel" id="phone2" name="phone2" >
+					
+				</div>
+				<input type="submit" value="place order">
+				<br>
+				<br>
+			</form>
 		</div>
 	</div>
-	<!-- end check out section -->
 
 
-
-{% endblock %}
+</body>
+</html>

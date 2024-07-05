@@ -12,7 +12,7 @@
 	<title>Fruitkha</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="{% static 'assets/img/what.png' %}">
+	<link rel="shortcut icon" type="image/png" href="{% static 'assets/img/favicon.svg' %}">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -66,7 +66,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="{% url 'home' %}">
-								<img src="{% static 'assets/img/what.png'}" alt="">
+								<img src="{% static 'assets/img/logo.svg' %}"  style="width: 50px;" alt="">
 							</a>
 						</div>
 						<!-- logo -->
@@ -77,7 +77,7 @@
 								<li class="current-list-item"><a href="{% url 'home' %}">Home</a>
 							
 								</li>
-								<li><a href="{% url 'about' %}">About</a></li>
+							
 							
 								<li>
 									<div class="header-icons">
@@ -133,8 +133,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Get 24/7 Support</p>
-						<h1>Contact us</h1>
+					
 					</div>
 				</div>
 			</div>
@@ -157,19 +156,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
+							<img src="{% static 'assets/img/logo1.svg' %}" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
+							<img src="{% static 'assets/img/logo2.svg' %}" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
+							<img src="{% static 'assets/img/logo3.svg' %}" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
+							<img src="{% static 'assets/img/logo4.svg' %}" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
+							<img src="{% static 'assets/img/logo5.svg' %}" alt="">
 						</div>
 					</div>
 				</div>
@@ -268,4 +267,3 @@
 </html>
 
 <!--endhere-->
-
