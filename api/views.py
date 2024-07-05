@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from main import models 
 from rest_framework.response import Response 
-from rest_framework.decorators import api_view,APIView
+from rest_framework.decorators import api_view,APIView,permission_classes
 from rest_framework.generics import ListAPIView,CreateAPIView,ListCreateAPIView,DestroyAPIView
 from .serializer import productserializer
-
+from rest_framework.permissions import IsAuthenticated
 #public apis 
 """ class products(ListAPIView):
     queryset = models.Product.objects.all()
@@ -26,8 +26,10 @@ def products(request):
 
 
 #any user api 
-
-
+@api_view()
+@permission_classes([IsAuthenticated])
+def secret(request):
+    ...
 
 
 
