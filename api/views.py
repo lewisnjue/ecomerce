@@ -1,37 +1,31 @@
-from django.shortcuts import render
-from main import models 
-from rest_framework.response import Response 
-from rest_framework.decorators import api_view,APIView,permission_classes
-from rest_framework.generics import ListAPIView,CreateAPIView,ListCreateAPIView,DestroyAPIView
-from .serializer import productserializer
+from django.contrib.auth import get_user_model
+from rest_framework.decorators import api_view,permission_classes
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-#public apis 
-""" class products(ListAPIView):
-    queryset = models.Product.objects.all()
-    serializer_class = productserializer """
+from main.models  import Cart,CartItem  # Assuming your Cart model is in the same app
 
 @api_view(['GET'])
-def products(request):
-    items = models.Product.objects.all()
-    search = request.query_params.get('search')
-    price = request.query_params.get('price')
-    if price:
-        items = items.filter(price__lte=price)
-
-    if search:
-        items = items.filter(name__icontains=search)
-
-    returnproducts = productserializer(items,many=True)
-    return Response(returnproducts.data)
-
-
-#any user api 
-@api_view()
 @permission_classes([IsAuthenticated])
-def secret(request):
-    ...
+def checkorder(request, username):
+    if request.user.is_staff or request.user.groups.filter(name='manager').exists():
+            user = get_user_model().objects.get(username=username)
+            cart = Cart.objects.get(user=user)
+            items = CartItem.objects.filter(cart=cart)
 
+            subtotal = sum(item.total for item in items)  # Concise subtotal calculation
 
+            itemslist = [{'product': item.product, 'quantity': item.quantity} for item in items]
 
+            returnitems = []
+            for item in itemslist:
+                quantity = item['quantity']
+                product = item['product']
+                price = product.price
+                name = product.name
+                returnitems.append({'quantity': quantity, 'price': price, 'name': name})
 
-#private api 
+            return Response({'items': returnitems,'subtotal':subtotal})
+
+    else:
+        return Response({'error': 'You are not authorized to view this data'}, status=status.HTTP_403_FORBIDDEN)
