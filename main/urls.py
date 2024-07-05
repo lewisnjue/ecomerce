@@ -6,9 +6,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('',views.home,name='home'),
-    path ('about',views.about,name='about'),
     path('cart',views.cart,name='cart'),
-    path('checkout',views.checkout.as_view(),name='checkout'),
+    path('checkout',views.checkout,name='checkout'),
     path('single/<int:pk>',views.single.as_view(),name='single'),
     path('register',views.Register,name='register'),
     path('login',views.loginview,name='login'),
@@ -22,6 +21,7 @@ urlpatterns = [
     path('remove/<int:id>',views.remove,name='remove'),
     path('subscribe',views.subscribe,name="subscribe"),
     path('search',views.product_search,name="search"),
+    path('sendadminmail',views.sendadminmail,name='sendadminmail')
     
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
