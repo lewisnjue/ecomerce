@@ -14,6 +14,10 @@ from .serializer import productserializer
 def products(request):
     items = models.Product.objects.all()
     search = request.query_params.get('search')
+    price = request.query_params.get('price')
+    if price:
+        items = items.filter(price__lte=price)
+
     if search:
         items = items.filter(name__icontains=search)
 
