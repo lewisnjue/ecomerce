@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
 {% block body %}
 <div class="row">
 	{% for product in products %}
@@ -13,17 +17,15 @@
 			</div>
 			<h3>{{ product.name }}</h3>
 			<p class="product-price"><span>Per Kg</span> {{ product.price }}$</p>
-			<!--make this a form please-->
 			<form class="add-to-cart-form" method="post" action="{% url 'addtocart' %}">
 				{% csrf_token %}
 				<input type="hidden" name="number" value="1">
 				<input type="hidden" name="id" value="{{product.id}}">
-				<button class="cart-btn btn-lg  js-addtocart-button" type="submit">add to cart</button>
+				<button class="cart-btn btn-lg js-addtocart-button" type="submit">add to cart</button>
 			</form>
 		</div>
 	</div>
 	{% endfor %}
-	<!--add here navigation links -->
 </div>
 
 <div class="pagination" style="text-align: center; font-size: larger; margin: auto; justify-content: space-around;">
@@ -43,21 +45,4 @@
 		{% endif %}
 	</span>
 </div>
-<!--/end here-->
-</div>
-</div>
-</div>
-</div>
-<!-- end product section -->
-<!-- testimonail-section -->
-<!-- advertisement section -->
-
-<!-- end advertisement section -->
-
-
-<!-- latest news -->
-
-<!-- end latest news -->
-
-
 {% endblock %}
