@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import environ
 import os
-
+import dj_database_url
 env = environ.Env()
 
 
@@ -29,7 +29,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -87,14 +87,9 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecomerce_django',
-        'USER':'lewis',
-        'PASSWORD':'lewis254',
-        'HOST':'localhost',
-        'PORT':'5432',
-    }
+    'default': dj_database_url.config(
+            default=env('DATABASE_URL')
+        )
 }
 
 
@@ -135,7 +130,33 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS =[ os.path.join(BASE_DIR,'static')]
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+CLOUNDFLARE_R2_BUCKET=env('CLOUNDFLARE_R2_BUCKET')
+CLOUNDFLARE_R2_ACCESS_KEY=env('CLOUNDFLARE_R2_ACCESS_KEY')
+CLOUNDFLARE_R2_SECRET_KEY=env('CLOUNDFLARE_R2_SECRET_KEY')
+CLOUNDFLARE_R2_BUCKET_ENDPOINT=env('CLOUNDFLARE_R2_BUCKET_ENDPOINT')
+
+CLOUNDFLARE_R2_CONFIG_OPTIONS = {
+    'bucket_name':CLOUNDFLARE_R2_BUCKET,
+    'access_key':CLOUNDFLARE_R2_ACCESS_KEY,
+    'secret_key':CLOUNDFLARE_R2_SECRET_KEY,
+    'endpoint_url':CLOUNDFLARE_R2_BUCKET_ENDPOINT,
+    'default_acl': 'public-read', # private
+    'signature_version': 's3v4',
+
+}
+
+STORAGES = {
+    'default': {
+        "BACKEND":'helpers.cloundflare.storages.MediaFilesStorage',
+        "OPTIONS":CLOUNDFLARE_R2_CONFIG_OPTIONS
+    },
+    'staticfiles':{
+        "BACKEND":'helpers.cloundflare.storages.StaticFilesStorage',
+        "OPTIONS":CLOUNDFLARE_R2_CONFIG_OPTIONS
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
