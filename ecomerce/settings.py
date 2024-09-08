@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'rest_framework',
     'api',
-    'rest_framework.authtoken'
+    'payment',
+    'rest_framework.authtoken',
+    
 ]
 
 MIDDLEWARE = [
@@ -184,3 +186,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+# MPESA 
+MPESA_CONSUMER_KEY=env('MPESA_CONSUMER_KEY')
+MPESA_CONSUMER_SECRET=env('MPESA_CONSUMER_SECRET')
+MPESA_SHORTCODE=env('MPESA_SHORTCODE')
+MPESA_ENVIRONMENT=env('MPESA_ENVIRONMENT') # or production
+MPESA_VALIDATION_URL=env('MPESA_VALIDATION_URL')
+MPESA_CONFIRMATION_URL=env('MPESA_CONFIRMATION_URL')
+PASSKEY=env('PASSKEY')
+BUSINESS_SHORTCODE=env('BUSINESS_SHORTCODE')

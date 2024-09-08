@@ -12,3 +12,5 @@ djangorestframework
 django-storages
 django-storages[s3]
 gunicorn
+requests 
+django-dotenv
