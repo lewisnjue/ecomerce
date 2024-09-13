@@ -19,7 +19,7 @@ from django.contrib import messages
 @require_safe
 def home(request):
     products=Product.objects.all()
-    paginaator=Paginator(products,15) # show 2 products per page 
+    paginaator=Paginator(products,5) # show 2 products per page 
     page_number=request.GET.get('page')
     page_obj=paginaator.get_page(page_number)
     context = {'products':page_obj}
@@ -108,9 +108,8 @@ def logoutview(request):
 
 # start of AJAX request
 @require_POST
-@login_required(login_url='login')
-def addtocart(request):
-    if request.method == 'POST':
+def addtocart(request,*args,**kwargs):
+    if request.user:
         mycart = Cart.objects.get(user_id=request.user.id)
         myproduct = get_object_or_404(Product, id=request.POST.get('id'))
         quantity = int(request.POST.get('number'))
@@ -126,8 +125,11 @@ def addtocart(request):
             # Create a new cart item
             CartItem.objects.create(cart=mycart, product=myproduct, quantity=quantity)
         
-        #request.headers.get('x-requested-with') == 'XMLHttpRequest'
-        return JsonResponse({'message': 'Product added to cart successfully!'})
+        
+        previous_url = request.META.get('HTTP_REFERER', '/')
+        return HttpResponseRedirect(previous_url)
+    else:
+        return HttpResponseRedirect(reverse('login'))
     
 # end of AJAX request
 @require_GET
