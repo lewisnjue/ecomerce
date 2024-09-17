@@ -86,11 +86,46 @@ WSGI_APPLICATION = 'ecomerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': dj_database_url.config(
             default=env('DATABASE_URL')
         )
+}  """
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+
+
+
+
+# Replace the DATABASES section of your settings.py with this
+""" DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': env('PGDATABASE'),
+    'USER': env('PGUSER'),
+    'PASSWORD': env('PGPASSWORD'),
+    'HOST': env('PGHOST'),
+    'PORT': env('PGPORT'),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
+}
+
+
+
+ """
+
+
+
+
+
 
 
 # Password validation
