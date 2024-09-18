@@ -108,6 +108,7 @@ def logoutview(request):
 
 # start of AJAX request
 @require_POST
+@login_required(login_url='login')
 def addtocart(request,*args,**kwargs):
     if request.user:
         mycart = Cart.objects.get(user_id=request.user.id)

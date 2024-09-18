@@ -21,7 +21,8 @@ urlpatterns = [
     path('remove/<int:id>',views.remove,name='remove'),
     path('subscribe',views.subscribe,name="subscribe"),
     path('search',views.product_search,name="search"),
-    path('sendadminmail',views.sendadminmail,name='sendadminmail')
+    path('sendadminmail',views.sendadminmail,name='sendadminmail'),
+
     
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

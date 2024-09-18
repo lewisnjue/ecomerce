@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<h3>{{ product.name }}</h3>
-			<p class="product-price"><span>Per Kg</span> {{ product.price }}$</p>
+			<p class="product-price"><span></span> {{ product.price }}ksh</p>
 			<form class="add-to-cart-form" method="post" action="{% url 'addtocart' %}">
 				{% csrf_token %}
 				<input type="hidden" name="number" value="1">
@@ -42,6 +42,8 @@
 		<a href="?page={{ products.next_page_number }}">next</a>
 		<a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
 		{% endif %}
+
 	</span>
 </div>
+<button class="whatsapp-button" onclick="openWhatsApp()">Start WhatsApp Chat</button>
 {% endblock %}
