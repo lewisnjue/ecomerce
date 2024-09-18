@@ -182,7 +182,7 @@ CLOUNDFLARE_R2_CONFIG_OPTIONS = {
 
 }
 
-STORAGES = {
+""" STORAGES = {
     'default': {
         "BACKEND":'helpers.cloundflare.storages.MediaFilesStorage',
         "OPTIONS":CLOUNDFLARE_R2_CONFIG_OPTIONS
@@ -192,7 +192,7 @@ STORAGES = {
         "OPTIONS":CLOUNDFLARE_R2_CONFIG_OPTIONS
     }
 }
-
+ """
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
