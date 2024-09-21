@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from PIL import  Image
 from django.core.files.uploadedfile import   SimpleUploadedFile
 from io import BytesIO
-import io 
+import io # no need of this
 """ 
 the above three imporrs 
 image, simpleuploaded files and bytesio are used for image manipulation 

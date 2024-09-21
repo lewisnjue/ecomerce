@@ -203,6 +203,10 @@
 
 /* Mobile Layout: 320px. */
 @media only screen and (max-width: 767px) {
+	.row{
+		display: grid;
+		grid-template-columns: 2;
+	}
 
 	.site-logo img {
 	    max-width: 150px;
