@@ -1,0 +1,110 @@
+/* General styling for the grid container */
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default for larger screens - 4 columns */
+    gap: 20px; /* Space between grid items */
+    padding: 20px;
+    justify-items: center; /* Aligns grid items horizontally */
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+    .container-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens (tablets) */
+    }
+}
+
+@media (max-width: 768px) {
+    .container-grid {
+        grid-template-columns: repeat(2, minmax(150px, 1fr)); /* Ensure minimum 2 columns on small screens */
+    }
+}
+
+/* Styling for each product container */
+.container-whole {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    max-width: 300px; /* Ensures consistent width */
+}
+
+.container-whole:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+/* Styling for the image container */
+.container-image {
+    text-align: center;
+    padding: 15px;
+}
+
+.container-image img {
+    max-width: 100%;  /* Makes the image responsive within its container */
+    height: 250px; /* Ensures all images have the same height */
+    object-fit: cover; /* Ensures images are cropped to fit the container */
+    border-radius: 8px; /* Optional: Rounded corners */
+    transition: transform 0.3s ease-in-out;
+}
+
+.container-whole:hover .container-image img {
+    transform: scale(1.05); /* Slight zoom-in on image hover */
+}
+
+/* Styling for the add-to-cart container */
+.container-add {
+    padding: 15px;
+    text-align: center;
+}
+
+.container-add h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.container-add p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Styling for the add-to-cart form and button */
+.add-to-cart-form {
+    display: flex;
+    justify-content: center;
+}
+
+.cart-btn {
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-btn:hover {
+    background-color: #218838; /* Darken on hover */
+    transform: translateY(-3px); /* Lift button slightly */
+}
+
+.cart-btn:active {
+    background-color: #1e7e34;
+    transform: translateY(1px); /* Slight depression on click */
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+    .cart-btn {
+        padding: 14px 24px;
+        font-size: 1.1rem;
+    }
+}
