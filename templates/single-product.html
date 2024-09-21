@@ -2,54 +2,51 @@
 {% load static  %}
 {% block body %}
 
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>See more Details</p>
-						<h1>Single Product</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end breadcrumb section -->
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>See more Details</p>
+                    <h1>Single Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
 
-	<!-- single product -->
-	<div class="single-product mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-5">
-					<div class="single-product-img">
-						<img src="{{ product.image.url }}" alt="">
-					</div>
-				</div>
-				<div class="col-md-7">
-					<div class="single-product-content">
-						<h3>{{ product.name }}</h3>
-						<p class="single-product-pricing"><span>ksh {{product.price}}</span> </p>
-						<p></p>
-						<!--here bro -->
-						<!--/end here-->
-						<div class="single-product-form" style="width : 48%">
-							<form action="{% url 'addtocart' %}"  method="post" class="add-to-cart-form">
-							  {% csrf_token %}
-								<input type="number" placeholder="1" name="number" value="1">
-								<input type="hidden" name="id" value="{{product.id}}">
-								<button type="submit"> Add to Cart</button>
-							</form>
-							
-						
-						</div>
-						
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img custom-product-img">
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content custom-product-content">
+                    <h3 class="custom-product-title">{{ product.name }}</h3>
+                    <p class="single-product-pricing custom-product-price"><span>ksh {{ product.price }}</span></p>
+                    
+                    <!--here bro -->
+                    <p class="custom-product-description">{{ product.description }}</p>
+                    <!--/end here-->
+
+                    <div class="single-product-form custom-product-form" style="width: 48%">
+                        <form action="{% url 'addtocart' %}" method="post" class="add-to-cart-form custom-add-to-cart-form">
+                            {% csrf_token %}
+                            <input type="number" placeholder="1" name="number" value="1" class="custom-quantity-input">
+                            <input type="hidden" name="id" value="{{ product.id }}">
+                            <button type="submit" class="custom-cart-btn">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

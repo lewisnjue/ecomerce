@@ -108,3 +108,253 @@
         font-size: 1.1rem;
     }
 }
+/* SINGLE PAGE STYLES  */
+
+
+/* Custom styles for the single product page */
+
+/* Custom image styling */
+.custom-product-img img {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Ensure the image doesn't get too tall */
+    object-fit: cover; /* Keep the aspect ratio and crop if necessary */
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+    transition: transform 0.3s ease;
+}
+
+.custom-product-img img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Custom content area */
+.custom-product-content {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.custom-product-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.custom-product-price {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #ff5733; /* Custom color for price */
+    margin-bottom: 20px;
+}
+
+/* Custom product description styling */
+.custom-product-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Custom form styling */
+.custom-product-form {
+    display: flex;
+    align-items: center;
+}
+
+.custom-quantity-input {
+    width: 60px;
+    padding: 8px;
+    margin-right: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.custom-quantity-input:focus {
+    border-color: #28a745; /* Matches button color */
+    outline: none;
+}
+
+/* Custom Add to Cart button */
+.custom-cart-btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-cart-btn:hover {
+    background-color: #218838;
+    transform: translateY(-3px); /* Lift on hover */
+}
+
+.custom-cart-btn:active {
+    background-color: #1e7e34;
+    transform: translateY(1px); /* Slight depression on click */
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .custom-product-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .custom-product-img img {
+        max-height: 400px; /* Smaller image height for small screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-product-img img {
+        max-height: 300px; /* Even smaller height for very small screens */
+    }
+
+    .custom-product-title {
+        font-size: 1.8rem; /* Smaller title on small screens */
+    }
+
+    .custom-product-price {
+        font-size: 1.3rem; /* Smaller price on small screens */
+    }
+
+    .custom-cart-btn {
+        width: 100%; /* Full width button for small screens */
+        padding: 12px;
+    }
+
+    .custom-quantity-input {
+        width: 50px; /* Smaller input for small screens */
+    }
+}
+
+/* RESULT CSS  */
+
+/* General Product Card Styling */
+.cool-product-item {
+    background-color: #ffffff; /* Clean white background */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for a modern look */
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+    border: 1px solid #f0f0f0; /* Subtle border */
+}
+
+.cool-product-item:hover {
+    transform: translateY(-8px); /* Lifts the card on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Deep shadow on hover */
+}
+
+/* Image Styling */
+.cool-product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Product Name */
+.cool-product-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333333; /* Strong dark color */
+    margin-bottom: 12px;
+}
+
+/* Price Styling */
+.cool-product-price {
+    font-size: 1.1rem;
+    color: #ff6f61; /* Soft but bright coral for the price */
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.cool-form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Label */
+.cool-label {
+    font-size: 1rem;
+    color: #555555;
+    margin-right: 10px;
+}
+
+/* Input Field Styling */
+.cool-input {
+    width: 60px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #dddddd; /* Light border */
+    border-radius: 6px;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cool-input:focus {
+    border-color: #008cff; /* Bright blue focus border */
+    box-shadow: 0 0 8px rgba(0, 140, 255, 0.3);
+    outline: none;
+}
+
+/* Button Styling */
+.cool-cart-btn {
+    background-color: #008cff; /* Bright blue */
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 140, 255, 0.2); /* Subtle shadow */
+}
+
+.cool-cart-btn:hover {
+    background-color: #005bb5; /* Darker blue on hover */
+    box-shadow: 0 6px 12px rgba(0, 91, 181, 0.4); /* Deeper shadow */
+}
+
+.cool-cart-btn:active {
+    background-color: #004080; /* Darker shade when pressed */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .cool-product-item {
+        padding: 20px;
+    }
+
+    .cool-cart-btn {
+        width: 100%; /* Full-width button on smaller screens */
+    }
+
+    .cool-input {
+        width: 50px; /* Smaller input for mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    .cool-product-name {
+        font-size: 1.2rem;
+    }
+
+    .cool-product-price {
+        font-size: 1rem;
+    }
+
+    .cool-input {
+        width: 40px; /* Even smaller for very small screens */
+    }
+}
+
