@@ -4,33 +4,33 @@
 <div class="row">
     {% for product in products %}
         <div class="col-lg-4 col-md-6 text-center">
-            <div class="single-product-item">
+            <div class="single-product-item cool-product-item">
                 <div class="product-image">
                     <a href="{% url 'single' product.id %}">
-                        <img  style="height: 270px; width: auto;" src="{{ product.image.url }}" alt="">
+                        <img class="cool-product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
                     </a>
                 </div>
-                <h3>{{ product.name }}</h3>
-                <p class="product-price"><span>Per Kg</span> {{ product.price }}$</p>
-                <!--make this a form please-->
-                <form method="post" action="{% url 'addtocart' %}">
+                <h3 class="cool-product-name">{{ product.name }}</h3>
+                <p class="product-price cool-product-price">
+                    <span></span> {{ product.price }}ksh
+                </p>
+
+                <!-- Enhanced Form -->
+                <form method="post" action="{% url 'addtocart' %}" class="cool-add-to-cart-form">
                     {% csrf_token %}
-                    <input type="hidden" name="number" value="1">
-                    <input type="hidden" name="id" value="{{product.id}}">
-                    <button class="cart-btn btn-lg" type="submit">add to cart</button>
+                    <div class="form-group cool-form-group">
+                        <label for="quantity-{{ product.id }}" class="cool-label">Qty:</label>
+                        <input type="number" id="quantity-{{ product.id }}" name="number" value="1" class="cool-input">
+                    </div>
+                    <input type="hidden" name="id" value="{{ product.id }}">
+                    <button class="cool-cart-btn" type="submit">Add to Cart</button>
                 </form>
             </div>
         </div>
-    </div>
     {% empty %}
         <div class="col-12 text-center">
-            <p>No such product found!</p>
+            <p>No products found!</p>
         </div>
-</div>
     {% endfor %}
-    <!--add here navigation links -->
 </div>
-
-
-
 {% endblock %}
