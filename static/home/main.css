@@ -2,8 +2,6 @@
 .container-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Default for larger screens - 4 columns */
-    gap: 20px; /* Space between grid items */
-    padding: 20px;
     justify-items: center; /* Aligns grid items horizontally */
 }
 
