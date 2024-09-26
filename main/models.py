@@ -17,30 +17,42 @@ lets go
 class ProductManager(models.Manager):
     def search(self, query):
         return self.filter(name__icontains=query)
-    
 
 class Product(models.Model):
     image = models.ImageField(upload_to='product_images', blank=False, null=False)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=100, decimal_places=2)
+
     def __str__(self):
         return self.name
-        
+
     objects = ProductManager()
-    def save(self,*args,**kwargs):
+
+    def save(self, *args, **kwargs):
         if self.image and not self.image.name.endswith('.webp'):
             img = Image.open(self.image)
-            # convert the image to webp
-            img_io = BytesIO() # creating an inmemory place to save my image 
-            img.save(img_io,format='WEBP',quality=85) # saving image tempolary to the inmemroy place 
-            # get the file name and covert to web extension 
-            image_name = f'{self.image.name.rsplit(".",1)[0]}.webp'
-            # save the webp image in place of the original one 
-            self.image = SimpleUploadedFile(name=image_name,content=img_io.getvalue(),content_type='image/webp')
+
+            # Resize the image before converting to webp
+            output_size = (300, 250)  # Adjust based on the size of the image displayed in the template
+            img = img.resize(output_size, Image.Resampling.LANCZOS)
+
+            # Convert the image to webp
+            img_io = BytesIO()
+            img.save(img_io, format='WEBP', quality=85)
+
+            # Get the new file name with .webp extension
+            image_name = f'{self.image.name.rsplit(".", 1)[0]}.webp'
+
+            # Save the webp image in place of the original one
+            self.image = SimpleUploadedFile(
+                name=image_name,
+                content=img_io.getvalue(),
+                content_type='image/webp'
+            )
+
+        super().save(*args, **kwargs)
 
 
-        super().save(*args,**kwargs)
-        #  that is perfect now 
 
 
 class Cart(models.Model):

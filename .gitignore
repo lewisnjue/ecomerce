@@ -2,6 +2,7 @@
 
 ### OSX ###
 .DS_Store
+# what is your name 
 .AppleDouble
 .LSOverride
 
@@ -87,3 +88,5 @@ local_settings.py
 
 .env
 db.sqlite3
+venv/
+lewis
